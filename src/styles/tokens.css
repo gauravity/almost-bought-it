@@ -1,0 +1,50 @@
+:root {
+  --bg-obsidian: #0c0e13;
+  --bg-panel: #13161f;
+  --bg-panel-translucent: rgba(19, 22, 31, 0.94);
+  --bg-elevated: #1a1f2c;
+  --bg-hover: #23293a;
+  --bg-well: #090b10;
+
+  --ink-primary: #f3f4f6;
+  --ink-parchment: #e5dfd3;
+  --ink-secondary: #a1a8bc;
+  --ink-muted: #6f778c;
+
+  --border-panel: #262b38;
+  --border-bezel: #1d212b;
+  --border-modal: #2b3142;
+  --border-keycap: #343b4e;
+  --border-pixel: #090b10;
+
+  --accent-emerald: #10b981;
+  --accent-rose: #f43f5e;
+  --accent-amber: #f59e0b;
+  --accent-sky: #38bdf8;
+  --accent-violet: #8b5cf6;
+
+  --iphone-bezel: #3f4656;
+  --iphone-chassis: #151821;
+  --iphone-screen: #0b0d12;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+
+  --radius-px: 3px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-iphone: 18px;
+
+  --shadow-bezel: 0 20px 48px rgba(0, 0, 0, 0.55);
+  --shadow-panel: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-gbtn: inset 0 2px 0 rgba(255, 255, 255, 0.22), inset 0 -3px 0 rgba(0, 0, 0, 0.45), 0 3px 0 #07080c;
+  --shadow-gbtn-pressed: inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.45), 0 1px 0 #07080c;
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}

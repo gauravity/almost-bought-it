@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Almost Bought It — Josh's Impossible MacBook Pro RPG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <header class="hud-top">
+        <div class="hud-gauges" aria-label="Life balance meters">
+          <div class="gauge-item">
+            <div class="gauge-head">
+              <span class="gauge-label">
+                <span class="gauge-ico ico-rose" data-icon="heart" aria-hidden="true"></span>
+                <span>Hin</span>
+              </span>
+              <span id="val-hin" class="gauge-val tabular">84%</span>
+            </div>
+            <div class="gauge-track"><div id="bar-hin" class="gauge-fill gauge-rose"></div></div>
+          </div>
+
+          <div class="gauge-item">
+            <div class="gauge-head">
+              <span class="gauge-label">
+                <span class="gauge-ico ico-amber" data-icon="paw" aria-hidden="true"></span>
+                <span>Milo</span>
+              </span>
+              <span id="val-milo" class="gauge-val tabular">82%</span>
+            </div>
+            <div class="gauge-track"><div id="bar-milo" class="gauge-fill gauge-amber"></div></div>
+          </div>
+
+          <div class="gauge-item">
+            <div class="gauge-head">
+              <span class="gauge-label">
+                <span class="gauge-ico ico-sky" data-icon="bolt" aria-hidden="true"></span>
+                <span>Vibe</span>
+              </span>
+              <span id="val-vibe" class="gauge-val tabular">78%</span>
+            </div>
+            <div class="gauge-track"><div id="bar-vibe" class="gauge-fill gauge-sky"></div></div>
+          </div>
+        </div>
+
+        <div class="hud-centre">
+          <span id="hud-clock" class="pill-clock tabular">Wk 4 • 90.0s</span>
+
+          <div class="hud-goal">
+            <div class="goal-text">
+              <span id="hud-tier" class="goal-chip">M4 Pro</span>
+              <span id="hud-rrp" class="goal-rrp tabular" hidden>£2,199</span>
+              <span id="hud-effective" class="goal-effective tabular">£2,199</span>
+              <span id="hud-fund" class="goal-fund tabular">Fund £650</span>
+            </div>
+            <div class="goal-bar-wrap" aria-label="MacBook Pro fund progress">
+              <div id="hud-fund-bar" class="goal-bar-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hud-actions">
+          <span id="ai-status" class="ai-pill">
+            <span class="ai-pill-ico" data-icon="code" aria-hidden="true"></span>
+            <span id="ai-active-label">AI: Claude Max</span>
+            <span id="ai-subs-badge" class="ai-subs tabular" hidden>2 subs</span>
+          </span>
+
+          <button id="btn-coupon" type="button" class="gbtn gbtn-emerald gbtn-sm">
+            <span class="gbtn-ico" data-icon="coupon" aria-hidden="true"></span>
+            <span>Coupon</span>
+            <kbd class="keycap">C</kbd>
+          </button>
+
+          <button
+            id="btn-mute"
+            type="button"
+            class="gbtn gbtn-slate gbtn-icon"
+            aria-label="Toggle sound"
+            title="Toggle sound (M)"
+          >
+            <span id="ico-mute" class="gbtn-ico" data-icon="soundOn" aria-hidden="true"></span>
+          </button>
+        </div>
+      </header>
+
+      <main class="stage-wrap">
+        <div class="stage-bezel">
+          <canvas
+            id="game-canvas"
+            width="960"
+            height="540"
+            aria-label="Interactive 2D RPG map of Josh's house, tiny rectangular office, driveway and Apple Store pedestal"
+          ></canvas>
+          <div id="world-ui-layer" class="world-ui-layer" aria-label="In-world actions"></div>
+          <div id="iphone-widget" class="iphone-widget" data-expanded="false" aria-label="Josh's iPhone messages"></div>
+        </div>
+      </main>
+    </div>
+
+    <dialog id="intro-dialog" aria-labelledby="intro-title" closedby="none">
+      <div class="modal-card">
+        <p class="modal-kicker">90-SECOND IMPOSSIBLE INDIE RPG</p>
+        <h2 id="intro-title" class="modal-title">Almost Bought It</h2>
+        <p class="modal-lead">
+          You are <strong>Josh</strong> — WordPress PM by day, WoW raider &amp; Modular Mail vibe-coder by night.
+          Save for a <strong>MacBook Pro</strong> before you and <strong>Hin</strong> welcome the baby.
+        </p>
+
+        <ul class="modal-bullets">
+          <li><strong>Walk or Tap:</strong> Roam Josh's tiny office, living room, porch &amp; driveway (<code>WASD</code>/Arrows or click).</li>
+          <li><strong>The Hustle:</strong> Ship <strong>WordPress tickets</strong> for real £. Vibe-coding <strong>Modular Mail</strong> yields £0 MRR and huge AI bills.</li>
+          <li><strong>Keep Balance:</strong> Rotate your bike &amp; desk, survive WoW pulls, pat <strong>Milo</strong>, eat Digestives, chase #1 AI models, and stack dubious coupons to text <strong>Gaurav</strong> ("lad").</li>
+          <li><strong>The Catch:</strong> Whenever you get close, Tim Cook drops a newer chip — and you cannot win.</li>
+        </ul>
+
+        <div class="modal-actions">
+          <button id="btn-start-game" type="button" class="gbtn gbtn-emerald gbtn-lg" autofocus>
+            <span class="gbtn-ico" data-icon="laptop" aria-hidden="true"></span>
+            <span>Play 90s Shift</span>
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="receipt-dialog" aria-labelledby="receipt-title" closedby="none">
+      <div class="receipt-paper">
+        <div class="receipt-top">
+          <p class="receipt-store">ALMOST BOUGHT IT • LIFE &amp; MODULAR MAIL AUDIT</p>
+          <h2 id="receipt-title" class="receipt-headline">Baby Arrived!</h2>
+          <p id="receipt-detail" class="receipt-detail"></p>
+        </div>
+
+        <div class="receipt-rank-box">
+          <span class="receipt-rank-label">OFFICIAL ROAST RANK</span>
+          <strong id="receipt-rank-title" class="receipt-rank-title"></strong>
+          <span id="receipt-rank-sub" class="receipt-rank-sub"></span>
+        </div>
+
+        <div id="receipt-lines" class="receipt-lines tabular"></div>
+
+        <div class="receipt-total">
+          <span>MACBOOKS PURCHASED</span>
+          <strong>0</strong>
+        </div>
+
+        <div class="receipt-actions">
+          <button id="btn-play-again" type="button" class="gbtn gbtn-dark gbtn-md" autofocus>
+            <span class="gbtn-ico" data-icon="replay" aria-hidden="true"></span>
+            <span>Try Again (Next Keynote)</span>
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

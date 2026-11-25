@@ -1,0 +1,1387 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-obsidian);
+  color: var(--ink-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.app-shell {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* Ultra-Slim Single-Row Top RPG Status Bar */
+.hud-top {
+  background: var(--bg-panel-translucent);
+  border: 1px solid var(--border-panel);
+  border-radius: var(--radius-md);
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-panel);
+}
+
+/* Left: 3 Minimal RPG Gauges */
+.hud-gauges {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.gauge-item {
+  width: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.gauge-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.gauge-label {
+  color: var(--ink-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gauge-ico,
+.gbtn-ico,
+.ai-pill-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  flex-shrink: 0;
+}
+
+.gauge-ico svg,
+.gbtn-ico svg,
+.ai-pill-ico svg {
+  display: block;
+}
+
+.ico-rose {
+  color: var(--accent-rose);
+}
+
+.ico-amber {
+  color: var(--accent-amber);
+}
+
+.ico-sky {
+  color: var(--accent-sky);
+}
+
+.gauge-val {
+  color: var(--ink-primary);
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.gauge-track {
+  height: 4px;
+  background: var(--bg-well);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gauge-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 120ms linear;
+}
+
+.gauge-rose {
+  background: var(--accent-rose);
+}
+
+.gauge-amber {
+  background: var(--accent-amber);
+}
+
+.gauge-sky {
+  background: var(--accent-sky);
+}
+
+/* Centre: Clock & MacBook Fund */
+.hud-centre {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 440px;
+}
+
+.pill-clock {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: var(--radius-px);
+  background: var(--bg-well);
+  border: 1px solid var(--border-panel);
+  color: var(--ink-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pill-clock.urgent {
+  background: var(--accent-rose);
+  border-color: #fb7185;
+  color: #ffffff;
+}
+
+.hud-goal {
+  flex: 1 1 auto;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.goal-text {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 11.5px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.goal-chip {
+  font-weight: 800;
+  color: var(--ink-primary);
+}
+
+.goal-rrp {
+  color: var(--ink-muted);
+  text-decoration: line-through;
+  font-size: 10.5px;
+}
+
+.goal-effective {
+  font-weight: 800;
+  color: var(--accent-emerald);
+}
+
+.goal-fund {
+  margin-left: auto;
+  font-weight: 700;
+  color: var(--ink-parchment);
+}
+
+.goal-bar-wrap {
+  height: 4px;
+  background: var(--bg-well);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.goal-bar-fill {
+  height: 100%;
+  width: 30%;
+  background: linear-gradient(90deg, #059669, #34d399);
+  transition: width 120ms ease-out;
+}
+
+/* Right: AI Pill, Coupon Button & Sound Button */
+.hud-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.ai-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: var(--radius-px);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-panel);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-secondary);
+  white-space: nowrap;
+}
+
+.ai-pill.overtaken {
+  border-color: rgba(245, 158, 11, 0.72);
+  background: rgba(245, 158, 11, 0.14);
+  color: #fde68a;
+}
+
+.ai-subs {
+  padding: 1px 5px;
+  border-radius: var(--radius-px);
+  background: rgba(244, 63, 94, 0.22);
+  color: #fda4af;
+  border: 1px solid rgba(244, 63, 94, 0.55);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.ai-subs[hidden] {
+  display: none;
+}
+
+/* Hero 16:9 RPG Viewport (Fills nearly 100dvh minus slim top HUD) */
+.stage-wrap {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  container-type: size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage-bezel {
+  position: relative;
+  width: min(100cqw, calc(100cqh * 16 / 9));
+  height: min(100cqh, calc(100cqw * 9 / 16));
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-well);
+  border: 2px solid var(--border-bezel);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-bezel);
+  overflow: hidden;
+}
+
+#game-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  image-rendering: pixelated;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* Authentic 16-Bit Pixel-RPG Buttons (.gbtn) & Keycap Chips */
+.keycap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 2px;
+  background: rgba(9, 11, 16, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-bottom-width: 2px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #f3f4f6;
+  line-height: 1;
+}
+
+.gbtn {
+  appearance: none;
+  border: 2px solid var(--border-pixel);
+  border-radius: var(--radius-px);
+  box-shadow: var(--shadow-gbtn);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  white-space: nowrap;
+  user-select: none;
+  transition: transform 60ms ease, filter 100ms ease, box-shadow 60ms ease;
+}
+
+.gbtn[hidden] {
+  display: none;
+}
+
+.gbtn:hover:not(:disabled) {
+  filter: brightness(1.09);
+}
+
+.gbtn:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-gbtn-pressed);
+}
+
+.gbtn:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+.gbtn:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+  filter: grayscale(0.25);
+}
+
+.gbtn-xs {
+  font-size: 10px;
+  padding: 4px 7px;
+  gap: 4px;
+}
+
+.gbtn-sm {
+  font-size: 11px;
+  padding: 5px 9px;
+  gap: 5px;
+}
+
+.gbtn-md {
+  font-size: 11.5px;
+  padding: 8px 13px;
+  gap: 6px;
+}
+
+.gbtn-lg {
+  font-size: 12.5px;
+  padding: 10px 18px;
+  gap: 7px;
+}
+
+.gbtn-icon {
+  width: 30px;
+  height: 28px;
+  padding: 0;
+}
+
+.gbtn-emerald {
+  background: #0d9468;
+  color: #ecfdf5;
+}
+
+.gbtn-amber {
+  background: #d97706;
+  color: #fffbeb;
+}
+
+.gbtn-violet {
+  background: #6d28d9;
+  color: #f5f3ff;
+}
+
+.gbtn-rose {
+  background: #be123c;
+  color: #fff1f2;
+}
+
+.gbtn-slate {
+  background: #272f41;
+  color: #e2e8f0;
+}
+
+.gbtn-dark {
+  background: #141821;
+  color: #f8fafc;
+}
+
+/* In-World Floating RPG Interactive Layer */
+.world-ui-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.world-ui-layer[hidden] {
+  display: none;
+}
+
+.world-prompt {
+  position: absolute;
+  pointer-events: auto;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  z-index: 12;
+}
+
+.world-prompt.below {
+  transform: translate(-50%, 0);
+}
+
+.world-prompt.event-prompt {
+  z-index: 15;
+}
+
+.world-prompt-row {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 4px;
+  padding: 3px;
+  background: rgba(9, 11, 16, 0.88);
+  border: 2px solid #090b10;
+  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.55);
+}
+
+.timer-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #0b0d12;
+  border: 1px solid #2b3142;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.timer-ring-svg {
+  display: block;
+}
+
+/* Overlaid Clickable iPhone Widget (Bottom-Right Corner Over Game) */
+.iphone-widget {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 30;
+  background: var(--iphone-chassis);
+  border: 2px solid var(--iphone-bezel);
+  border-radius: var(--radius-iphone);
+  padding: 4px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  pointer-events: auto;
+  transition: width 150ms ease, max-height 150ms ease;
+}
+
+.iphone-widget[hidden] {
+  display: none;
+}
+
+/* Subtle metallic side buttons */
+.iphone-widget::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 26px;
+  width: 2px;
+  height: 16px;
+  background: #4b5563;
+  border-radius: 2px 0 0 2px;
+}
+
+.iphone-widget::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: 32px;
+  width: 2px;
+  height: 22px;
+  background: #4b5563;
+  border-radius: 0 2px 2px 0;
+}
+
+.iphone-widget[data-expanded='false'] {
+  width: 224px;
+  cursor: pointer;
+}
+
+.iphone-widget[data-expanded='true'] {
+  width: 274px;
+  max-height: 382px;
+}
+
+.iphone-screen {
+  background: var(--iphone-screen);
+  border: 1px solid #050608;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 370px;
+}
+
+.iphone-statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px 4px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--ink-secondary);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.iphone-island {
+  width: 56px;
+  height: 11px;
+  border-radius: 999px;
+  background: #040507;
+  border: 1px solid #202636;
+  flex-shrink: 0;
+}
+
+.iphone-unread {
+  min-width: 17px;
+  height: 16px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--accent-rose);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iphone-unread[hidden] {
+  display: none;
+}
+
+.iphone-peek {
+  padding: 4px 9px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.iphone-peek-sender {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--ink-primary);
+}
+
+.iphone-peek-sender-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.wa-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
+  flex-shrink: 0;
+}
+
+.iphone-peek-hint {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+}
+
+.iphone-peek-text {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.3;
+  color: #cbd5e1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Expanded iPhone Screen */
+.iphone-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 9px;
+  border-bottom: 1px solid #1c2130;
+  background: #10131b;
+  flex-shrink: 0;
+}
+
+.iphone-contact {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.iphone-contact-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.iphone-contact-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-primary);
+}
+
+.iphone-contact-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--accent-emerald);
+}
+
+.mm-live-ico {
+  color: var(--accent-emerald);
+}
+
+.mm-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.75);
+}
+
+.iphone-thread {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 96px;
+  max-height: 196px;
+  overscroll-behavior: contain;
+}
+
+.iphone-bubble {
+  max-width: 88%;
+  padding: 5px 8px;
+  border-radius: 9px;
+  font-size: 11px;
+  line-height: 1.32;
+  word-break: break-word;
+}
+
+.iphone-bubble.msg-pop-in {
+  animation: msgPopIn 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes msgPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.iphone-bubble.josh {
+  align-self: flex-end;
+  background: #065f46;
+  color: #ecfdf5;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  border-bottom-right-radius: 3px;
+}
+
+.iphone-bubble.gaurav {
+  align-self: flex-start;
+  background: #1e2433;
+  color: #e2e8f0;
+  border: 1px solid #2e364a;
+  border-bottom-left-radius: 3px;
+}
+
+.iphone-bubble.hin {
+  align-self: stretch;
+  max-width: 100%;
+  background: rgba(190, 18, 60, 0.22);
+  color: #fecdd3;
+  border: 1px solid rgba(244, 63, 94, 0.45);
+}
+
+.iphone-bubble-sender {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  opacity: 0.8;
+  margin-bottom: 1px;
+}
+
+.iphone-delivered {
+  display: block;
+  margin-top: 2px;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: rgba(236, 253, 245, 0.72);
+}
+
+.typing-bubble {
+  padding: 6px 10px;
+}
+
+.typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 12px;
+}
+
+.typing-dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #94a3b8;
+  animation: typingBounce 1s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.typing-dots span:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+@keyframes typingBounce {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+/* Live Keynote iPhone Compose Bar */
+.iphone-composer {
+  margin: 0 8px 6px;
+  padding: 5px 6px 5px 8px;
+  border-radius: 12px;
+  background: #141925;
+  border: 1px solid rgba(52, 211, 153, 0.45);
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.12);
+  flex-shrink: 0;
+}
+
+.iphone-composer-field {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 10.5px;
+  line-height: 1.3;
+  color: #f8fafc;
+  word-break: break-word;
+}
+
+.composer-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 11px;
+  margin-left: 1px;
+  vertical-align: -1px;
+  background: var(--accent-emerald);
+  animation: cursorBlink 0.7s steps(2, start) infinite;
+}
+
+@keyframes cursorBlink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.iphone-send-badge {
+  flex-shrink: 0;
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: #059669;
+  color: #ecfdf5;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.65);
+}
+
+.iphone-send-badge.ready {
+  background: #10b981;
+  box-shadow: 0 0 14px rgba(52, 211, 153, 0.95);
+}
+
+.iphone-footer {
+  padding: 6px 8px;
+  border-top: 1px solid #1c2130;
+  background: #10131b;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.iphone-footer .gbtn {
+  width: 100%;
+}
+
+/* Modular Mail SaaS Analytics App */
+.mm-dashboard {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  overscroll-behavior: contain;
+}
+
+.mm-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.mm-kpi-card {
+  background: #10141f;
+  border: 1px solid #22293a;
+  border-radius: 7px;
+  padding: 6px 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.mm-kpi-card.flash {
+  background: rgba(245, 158, 11, 0.16);
+  border-color: rgba(245, 158, 11, 0.72);
+}
+
+.mm-kpi-label {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+}
+
+.mm-kpi-val {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ink-primary);
+}
+
+.mm-kpi-card.flash .mm-kpi-val {
+  color: #fcd34d;
+}
+
+.mm-kpi-val.mm-kpi-rose {
+  color: #fb7185;
+}
+
+.mm-kpi-note {
+  font-size: 9px;
+  line-height: 1.2;
+  color: #fde68a;
+  font-weight: 600;
+}
+
+.mm-chart-card {
+  background: #0d1018;
+  border: 1px solid #22293a;
+  border-radius: 7px;
+  padding: 6px 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mm-chart-svg {
+  display: block;
+  width: 100%;
+  height: 54px;
+  border-radius: 4px;
+  background: #07090e;
+  border: 1px solid #192030;
+}
+
+.mm-chart-label {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+/* iPhone Bottom App Switcher Dock */
+.iphone-dock {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 5px 6px 6px;
+  background: #0a0c12;
+  border-top: 1px solid #1c2130;
+  flex-shrink: 0;
+}
+
+.iphone-dock-tab {
+  appearance: none;
+  border: 1px solid #1f2637;
+  border-radius: 8px;
+  background: #121622;
+  color: var(--ink-secondary);
+  padding: 5px 6px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  position: relative;
+  transition: background 100ms ease, color 100ms ease, border-color 100ms ease;
+}
+
+.iphone-dock-tab:hover {
+  background: #1a2031;
+  color: var(--ink-primary);
+}
+
+.iphone-dock-tab.active {
+  background: #1d2538;
+  border-color: #3b4764;
+  color: #ffffff;
+}
+
+.dock-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.dock-badge {
+  min-width: 15px;
+  height: 15px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--accent-rose);
+  color: #ffffff;
+  font-size: 8.5px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dock-amber-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-amber);
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.85);
+}
+
+/* Native <dialog> modals (modern-web-guidance compliant) */
+dialog {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: min(520px, calc(100vw - 24px));
+  width: 100%;
+  color: var(--ink-primary);
+}
+
+dialog[open] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  background: rgba(6, 8, 12, 0.78);
+  backdrop-filter: blur(5px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* Dark Steam Title Card Intro Modal */
+.modal-card {
+  width: 100%;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-modal);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-bezel);
+}
+
+.modal-kicker {
+  margin: 0 0 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-emerald);
+}
+
+.modal-title {
+  margin: 0 0 var(--space-2);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.modal-lead {
+  margin: 0 0 var(--space-4);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-parchment);
+}
+
+.modal-bullets {
+  margin: 0 0 var(--space-5);
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-secondary);
+}
+
+.modal-bullets strong {
+  color: var(--ink-primary);
+}
+
+.modal-bullets code {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  background: var(--bg-well);
+  color: var(--ink-parchment);
+  border: 1px solid var(--border-panel);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Thermal Receipt Dialog */
+.receipt-paper {
+  width: 100%;
+  background: #ffffff;
+  color: #0a0a0a;
+  border: 1px solid #d4d4d8;
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-bezel);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-height: 90dvh;
+  overflow-y: auto;
+}
+
+.receipt-top {
+  text-align: center;
+  border-bottom: 1px dashed #d4d4d8;
+  padding-bottom: var(--space-3);
+}
+
+.receipt-store {
+  margin: 0 0 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #71717a;
+}
+
+.receipt-headline {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0a0a0a;
+}
+
+.receipt-detail {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #52525b;
+}
+
+.receipt-rank-box {
+  background: #f4f4f5;
+  border: 1px solid #e4e4e7;
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+}
+
+.receipt-rank-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #71717a;
+  letter-spacing: 0.06em;
+}
+
+.receipt-rank-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0a0a0a;
+}
+
+.receipt-rank-sub {
+  font-size: 12px;
+  color: #52525b;
+}
+
+.receipt-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px dotted #e4e4e7;
+  padding-bottom: 4px;
+}
+
+.receipt-row span:first-child {
+  color: #52525b;
+}
+
+.receipt-row span:last-child {
+  font-weight: 700;
+  text-align: right;
+  color: #0a0a0a;
+}
+
+.receipt-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-2);
+  border-top: 2px solid #0a0a0a;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 800;
+  color: #0a0a0a;
+}
+
+.receipt-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.receipt-actions .gbtn {
+  flex: 1 1 180px;
+}
+
+/* Single-Row Top HUD on Desktop (>= 940px) */
+@media (min-width: 940px) {
+  .hud-top {
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .hud-gauges {
+    gap: 8px;
+  }
+
+  .gauge-item {
+    width: 72px;
+    gap: 2px;
+  }
+
+  .hud-centre {
+    gap: 8px;
+    min-width: 0;
+    max-width: 430px;
+  }
+
+  .hud-goal {
+    min-width: 150px;
+  }
+}
+
+/* Responsive Mobile Layout */
+@media (max-width: 780px) {
+  .app-shell {
+    height: auto;
+    min-height: 100dvh;
+    padding: var(--space-2);
+    gap: var(--space-2);
+    overflow-x: hidden;
+  }
+
+  .hud-top {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding: var(--space-2);
+  }
+
+  .hud-centre {
+    order: 1;
+    width: 100%;
+    max-width: none;
+    gap: var(--space-2);
+  }
+
+  .hud-goal {
+    min-width: 0;
+  }
+
+  .hud-gauges {
+    order: 2;
+    width: 100%;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+
+  .gauge-item {
+    flex: 1 1 0;
+    width: auto;
+  }
+
+  .hud-actions {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .stage-wrap {
+    container-type: normal;
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .stage-bezel {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .iphone-widget {
+    right: 6px;
+    bottom: 6px;
+  }
+
+  .iphone-widget[data-expanded='false'] {
+    width: 176px;
+  }
+
+  .iphone-widget[data-expanded='true'] {
+    width: 232px;
+    max-height: 230px;
+  }
+
+  .iphone-screen {
+    max-height: 218px;
+  }
+
+  .iphone-thread {
+    max-height: 92px;
+  }
+
+  .keycap {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .goal-bar-fill,
+  .gauge-fill,
+  .gbtn,
+  .iphone-widget,
+  .iphone-dock-tab {
+    transition: none;
+  }
+
+  .iphone-bubble.msg-pop-in,
+  .typing-dots span,
+  .composer-cursor {
+    animation: none;
+  }
+}
